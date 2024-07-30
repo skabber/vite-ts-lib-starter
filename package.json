@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/username/repository.git"
+    "url": "git+https://github.com/skabber/vite-ts-lib-starter.git"
   },
   "main": "./dist/package-name.cjs",
   "module": "./dist/package-name.esm.js",
