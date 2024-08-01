@@ -12,6 +12,7 @@ on:
 
 jobs:
     build:
+        name: Build and Publish
         runs-on: ubuntu-latest
         permissions:
             contents: read
@@ -34,7 +35,7 @@ jobs:
               run: pnpm test
             - name: Build
               run: pnpm build
-            - run: pnpm publish
+            - run: pnpm publish --no-git-checks
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
 
