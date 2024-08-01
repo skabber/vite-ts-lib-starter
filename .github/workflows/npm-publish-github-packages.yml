@@ -1,14 +1,12 @@
-# This workflow will run tests using node and then publish a package to GitHub Packages when a release is created
-# For more information see: https://docs.github.com/en/actions/publishing-packages/publishing-nodejs-packages
-
-name: Node.js Package
+# Note:  This publishes the package based of the tag version. The tag version should be in the format vx.x.x
+# However, the version of the published package will be taken from the package.json file. It is best practice
+# to keep the version in the package.json file and the tag version the same.
+name: Publish Node.js Package
 
 on:
     push:
         tags:
             - "v[0-9]+.[0-9]+.[0-9]+"
-            # release:
-            #     types: [created]
 
 jobs:
     build:
@@ -38,21 +36,3 @@ jobs:
             - run: pnpm publish --no-git-checks
               env:
                   NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
-
-    # publish-gpr:
-    #     needs: build
-    #     runs-on: ubuntu-latest
-    #     permissions:
-    #         contents: read
-    #         packages: write
-    #     steps:
-    #         - uses: actions/checkout@v4
-    #         - uses: actions/setup-node@v4
-    #           with:
-    #               node-version: 20
-    #               cache: "pnpm"
-    #               registry-url: https://npm.pkg.github.com/
-    #         # - run: npm ci
-    #         - run: pnpm publish
-    #           env:
-    #               NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
